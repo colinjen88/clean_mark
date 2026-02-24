@@ -1,0 +1,13 @@
+# 專案部署與回報守則
+當此專案部署成功後，請執行以下步驟與 Gateway 同步：
+
+1. **取得 API Key**：從開發者處取得 Gateway API Key（ShinyGateway2026）。
+2. **調用註冊 API**：使用 curl 發送回報請求：
+   URL: https://my8020.cloud/jen/api/register-project?key=[API_KEY]
+   Payload: {
+     "id": "你的專案ID",
+     "type": "docker", 
+     "domains": ["你的網域.com"],
+     "container_name": "你的容器名稱",
+     "status": "online"
+   }

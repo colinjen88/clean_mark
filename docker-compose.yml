@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  clean-mark-app:
+    build: .
+    container_name: clean-mark-app
+    restart: always
+    expose:
+      - "8501"
+    ports:
+      - "9005:8501"
+    networks:
+      - web-proxy
+    labels:
+      caddy: cleanmark.goldlab.shop
+      caddy.reverse_proxy: "{{upstreams 8501}}"
+    # 如果需要持久化暫存檔或使用者上傳，可在這裡掛載 volumes
+    # volumes:
+    #   - ./temp:/app/gemini_cleaner/temp
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  web-proxy:
+    external: true

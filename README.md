@@ -12,9 +12,28 @@ CleanMark Pro 是一套功能強大的影像與影片浮水印移除工具，內
   - `core/`: 影像處理核心演算法 (OpenCV Inpainting 等)
 
 ## 啟動方式
+
+### 本地開發
 請確保您已安裝所有依賴項目 (參考 `gemini_cleaner/requirements.txt`)，建議在虛擬環境(`.venv`)下執行：
 
 ```bash
 cd gemini_cleaner
 python -m streamlit run app.py
 ```
+
+### Docker 部署 (VPS)
+本專案支援 Docker 化部署，並整合 Caddy Reverse Proxy。
+
+1. **建置並啟動容器**：
+   ```bash
+   docker-compose up -d --build
+   ```
+
+2. **訪問地址**：
+   預設網域為 `cleanmark.goldlab.shop` (需確保 DNS 已指向 VPS IP)。
+
+## 專案回報機制
+部署完成後，請務必按照 `.cursorrules` 規範，向 **Docker-VPS-Gateway** 註冊專案資訊。
+
+- **註冊 API**: `POST https://my8020.cloud/jen/api/register-project`
+- **主要欄位**: `id`, `type`, `domains`, `container_name`, `status`
